@@ -3,6 +3,7 @@ from .views import *
 
 
 urlpatterns = [
+    path('', apiOverview, name='api-overview'),
     path('products/', ProductList.as_view(), name='product-list'),
     path('products/<str:pk>/', ProductDetail.as_view(), name='product-detail'),
     
