@@ -7,6 +7,7 @@ services:
     volumes:
       - ./service:/service
     environment:
+      - DJANGO_SETTINGS_MODULE=service.settings
       - DB_HOST=database
       - DB_NAME=dbname
       - DB_USER=dbuser
@@ -26,3 +27,20 @@ services:
       - POSTGRES_PASSWORD=pass
     ports:
       - "5433:5432"
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./service:/service
+      - ./service/base/tests
+    environment:
+      - DB_HOST=database
+      - DB_NAME=dbname
+      - DB_USER=dbuser
+      - DB_PASS=pass
+    command: >
+      sh -c "pytest /tests"
+    depends_on:
+      - database
