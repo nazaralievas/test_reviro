@@ -10,10 +10,12 @@ from .serializers import ProductSerializer, EstablishmentSerializer
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
-        'Product List':'/product-list/',
-        'Product Detail':'/product-detail/',
-        'Establishment List':'/establishment-list/',
-        'Establishment Detail':'/establishment-detail/',
+        'Product List':'/products/',
+        'Product Detail':'/products/<str:pk>/',
+        'Establishment List':'/establishments/',
+        'Establishment Detail':'/establishments/<str:pk>/',
+        'Swagger': '/swagger/',
+        'ReDoc': '/redoc/'
         }
     return Response(api_urls)
 
